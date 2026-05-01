@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import { Text, StyleSheet, View, Button} from "react-native";
 import mqtt from "mqtt";
 import type { IClientOptions, MqttClient } from "mqtt";
+import { useMQTT } from "./MQTTClient";
+import Subscription from "./Subscription";
 
 type SensorDisplayProp = {
-    sensorInformation: string,
     sensorName: string,
     sensorUnit?: string
 }
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     header: {
         fontSize: 20,
         fontWeight: "bold",
@@ -31,6 +32,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         padding:24,
         height: "80%",
+        width: "100%",
         gap: 6, 
         backgroundColor: "#3669bc", 
         flexDirection: "column",
@@ -40,16 +42,17 @@ const styles = StyleSheet.create({
     },
     buttonRow: {
         alignItems: "center",
-        justifyContent:"space-between", 
         flex: 1,
         display:"flex",
-        flexDirection: "row"
+        flexDirection: "row",
+        verticalAlign:"middle",
     },
     mainText: {
         color: "#F8FAFC"
     },
     secondaryText: {
-        color: "#94A3B8"
+        color: "#94A3B8",
+        textAlign: "center",
     },
     successText: {
         color: "#10B981"
@@ -59,86 +62,12 @@ const styles = StyleSheet.create({
     }
 
 });
-function useMQTTSubscribe(client: any, topic: any, onMessage: any) {
-  useEffect(() => {
-    if (!client || !client.connected) return;
-    const handleMsg = (receivedTopic: any, message: any) => {
-      if (receivedTopic === topic) {
-        onMessage(message.toString());
-      }
-    };
-    client.subscribe(topic);
-    client.on('message', handleMsg);
-    return () => {
-      client.unsubscribe(topic);
-      client.off('message', handleMsg);
-    };
-  }, [client, topic, onMessage]);
-}
 
 
 export default function SensorDisplay({sensorName, sensorUnit}: SensorDisplayProp): React.ReactNode {
-    const [sensorInformation, setSensorInformation] = useState("");
-    const [client, setClient] = useState<MqttClient | null>(null);
-
-    const [connectStatus, setConnectStatus] = useState("");
-    const [payload, setPayload] = useState<{ topic: string; message: string } | null>(null);
-    
-    // for the button
-    const [enable, setEnable] = useState(true);
-    const handlePress = () => {
-        if (!client) {
-            const newClient = mqtt.connect("wss://test.mosquitto.org:8081", {});
-            setClient(newClient);
-
-            newClient.on('connect', () => {
-                setEnable(false);
-                newClient.subscribe("mesh");
-                console.log("got to connecting!");
-            });
-
-            newClient.on('disconnect', () => {
-                setEnable(true);
-            })
-            newClient.on('message', (topic, message) => {
-                if (topic === "mesh") {
-                    let recievedMessage = message.toString();
-                    let command = recievedMessage.split(":");
-                    if(command[0] === sensorName)
-                    {
-                        recievedMessage = recievedMessage.replace(command[0] + ":", "");
-                        setPayload({ topic, message: recievedMessage });
-                    }
-                    else {
-                        console.log(command[1]);
-                    }
-                    //console.log("trying to set the payload!");
-                }
-            });
-
-            newClient.on('error', (err) => {
-                console.error('Connection error: ', err);
-                newClient.end();
-            });
-        }
-    };
-        // Clean up on unmount
-    useEffect(() => {
-        return () => {
-            if (client) {
-                client.end();
-            }
-        };
-    }, [client]);
-    const handleDisconnect = () => {
-        if(client) {
-            client.end(() => {
-                console.log("Connection terminated");
-                setEnable(true);
-                setClient(null);
-            });
-        }
-    }
+    // for MQTT
+    const { connect, disconnect, subscribe, messages, status } = useMQTT();
+    const value = messages[sensorName];
 
     return (
         <View style={styles.container}>
@@ -147,12 +76,10 @@ export default function SensorDisplay({sensorName, sensorUnit}: SensorDisplayPro
             </Text>
             <View style={styles.secondaryContainer}>
                 <Text style={styles.secondaryText}>
-                    Sensor Data: {payload?.message || 'No data'} {sensorUnit}
+                    Sensor Data: {value || 'No data'} {sensorUnit + "\n"}
                 </Text>
 
                 <div style={styles.buttonRow}>
-                    <Button title="Subscribe" onPress={handlePress} disabled={!enable}/>
-                    <Button title="Disconnect" onPress={handleDisconnect} disabled={enable} color={styles.negativeButton.color}/>
                 </div>
             </View>
         </View>

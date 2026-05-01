@@ -1,0 +1,58 @@
+simplicity_sdk_2025.6.3/platform/service/sl_main/src/sl_main_kernel.o: \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2/platform/service/sl_main/src/sl_main_kernel.c \
+ /Users/armindelmo/Documents/College/Spr26/UCF-EEL4933\ Internet\ of\ Things\ System\ Design/IoTProject2/central/wifi_http_client_soc/autogen/sl_event_handler.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/CMSIS/RTOS2/Include/cmsis_os2.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/common/inc/sl_cmsis_os2_common.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/common/inc/sl_status.h \
+ /Users/armindelmo/Documents/College/Spr26/UCF-EEL4933\ Internet\ of\ Things\ System\ Design/IoTProject2/central/wifi_http_client_soc/autogen/sl_component_catalog.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//util/third_party/freertos/kernel/include/FreeRTOS.h \
+ /Users/armindelmo/Documents/College/Spr26/UCF-EEL4933\ Internet\ of\ Things\ System\ Design/IoTProject2/central/wifi_http_client_soc/config/FreeRTOSConfig.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//extension/wiseconnect/components/device/silabs/si91x/mcu/core/chip/inc/si91x_device.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//extension/wiseconnect/components/device/silabs/si91x/mcu/core/chip/inc/base_types.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/CMSIS/Core/Include/core_cm4.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/CMSIS/Core/Include/cmsis_version.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/CMSIS/Core/Include/cmsis_compiler.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/CMSIS/Core/Include/cmsis_gcc.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/CMSIS/Core/Include/mpu_armv7.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//extension/wiseconnect/components/device/silabs/si91x/mcu/core/chip/inc/system_si91x.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//extension/wiseconnect/components/device/silabs/si91x/mcu/core/chip/inc/rsi_error.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//extension/wiseconnect/components/device/silabs/si91x/mcu/core/config/rsi_ccp_user_config.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//extension/wiseconnect/components/device/silabs/si91x/mcu/core/chip/inc/si91x_mvp.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//util/third_party/freertos/kernel/include/projdefs.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//util/third_party/freertos/kernel/include/portable.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//util/third_party/freertos/kernel/include/deprecated_definitions.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//util/third_party/freertos/kernel/portable/GCC/ARM_CM4F/portmacro.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//util/third_party/freertos/kernel/include/mpu_wrappers.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/common/inc/sl_code_classification.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/common/inc/sli_code_classification.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/common/inc/sl_assert.h \
+ /Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/service/sl_main/inc/sl_main_init.h \
+ /Users/armindelmo/Documents/College/Spr26/UCF-EEL4933\ Internet\ of\ Things\ System\ Design/IoTProject2/central/wifi_http_client_soc/config/sl_main_start_task_config.h
+/Users/armindelmo/Documents/College/Spr26/UCF-EEL4933\ Internet\ of\ Things\ System\ Design/IoTProject2/central/wifi_http_client_soc/autogen/sl_event_handler.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/CMSIS/RTOS2/Include/cmsis_os2.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/common/inc/sl_cmsis_os2_common.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/common/inc/sl_status.h:
+/Users/armindelmo/Documents/College/Spr26/UCF-EEL4933\ Internet\ of\ Things\ System\ Design/IoTProject2/central/wifi_http_client_soc/autogen/sl_component_catalog.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//util/third_party/freertos/kernel/include/FreeRTOS.h:
+/Users/armindelmo/Documents/College/Spr26/UCF-EEL4933\ Internet\ of\ Things\ System\ Design/IoTProject2/central/wifi_http_client_soc/config/FreeRTOSConfig.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//extension/wiseconnect/components/device/silabs/si91x/mcu/core/chip/inc/si91x_device.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//extension/wiseconnect/components/device/silabs/si91x/mcu/core/chip/inc/base_types.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/CMSIS/Core/Include/core_cm4.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/CMSIS/Core/Include/cmsis_version.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/CMSIS/Core/Include/cmsis_compiler.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/CMSIS/Core/Include/cmsis_gcc.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/CMSIS/Core/Include/mpu_armv7.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//extension/wiseconnect/components/device/silabs/si91x/mcu/core/chip/inc/system_si91x.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//extension/wiseconnect/components/device/silabs/si91x/mcu/core/chip/inc/rsi_error.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//extension/wiseconnect/components/device/silabs/si91x/mcu/core/config/rsi_ccp_user_config.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//extension/wiseconnect/components/device/silabs/si91x/mcu/core/chip/inc/si91x_mvp.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//util/third_party/freertos/kernel/include/projdefs.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//util/third_party/freertos/kernel/include/portable.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//util/third_party/freertos/kernel/include/deprecated_definitions.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//util/third_party/freertos/kernel/portable/GCC/ARM_CM4F/portmacro.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//util/third_party/freertos/kernel/include/mpu_wrappers.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/common/inc/sl_code_classification.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/common/inc/sli_code_classification.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/common/inc/sl_assert.h:
+/Users/armindelmo/SimplicityStudio/SDKs/simplicity_sdk_2//platform/service/sl_main/inc/sl_main_init.h:
+/Users/armindelmo/Documents/College/Spr26/UCF-EEL4933\ Internet\ of\ Things\ System\ Design/IoTProject2/central/wifi_http_client_soc/config/sl_main_start_task_config.h:
