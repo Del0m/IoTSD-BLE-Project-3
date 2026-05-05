@@ -66,7 +66,7 @@ export default function RightSideBar() {
         }
         // update by sending message to mqtt client
         if(status === "connected" && subscribe.length > 0) {
-            publish("mesh", textMessages[textMessages.length - 1].message);
+            publish("WebToMesh", textMessages[textMessages.length - 1].message);
         }
         
     }, [textMessages])

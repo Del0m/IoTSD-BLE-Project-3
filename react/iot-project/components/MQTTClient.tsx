@@ -2,6 +2,7 @@
 
 import mqtt, { MqttClient } from "mqtt";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { BoardDisplayProp, SensorDisplay } from "./SensorDisplay";
 
 
 type MQTTContextType = {
@@ -16,7 +17,7 @@ type MQTTContextType = {
 };
 
 const MQTTContext = createContext<MQTTContextType | undefined>(undefined);
-export const MQTTProvider: React.FC<{children: React.ReactNode, sensors: string[]}> = ({ children, sensors }) => {
+export const MQTTProvider: React.FC<{children: React.ReactNode, sensors: BoardDisplayProp[]}> = ({ children, sensors }) => {
     const [client, setClient] = useState<MqttClient | null>(null);
     const [status, setStatus] = useState("disconnected");
     const [messages, setMessages] = useState<{ [sensor: string]: string }>({});
@@ -26,30 +27,39 @@ export const MQTTProvider: React.FC<{children: React.ReactNode, sensors: string[
     const connect = () => {
         if(client) return; // already connected
 
-        const newClient = mqtt.connect("wss://broker.hivemq.com:8081", {});
+        const newClient = mqtt.connect("wss://broker.hivemq.com:8884/mqtt", {});
         setClient(newClient);
         newClient.on('connect', () => {
             setStatus("connected");
-            newClient.subscribe("mesh");
+            newClient.subscribe("WebToMesh");
+            newClient.subscribe("MeshToWeb");
+
             console.log("got to connecting!");
         });    
         newClient.on('disconnect', () => {
             setStatus("disconnected");
         })
         newClient.on('message', (topic, message) => {
-            if (topic === "mesh") {
-                let recievedMessage = message.toString();
-                let command = recievedMessage.split(":");
-                if(sensors.includes(command[0]))
-                {
-                    recievedMessage = recievedMessage.replace(command[0] + ":", "");
-                    setMessages((prev) => ({ ...prev, [command[0]]: command[1]}));
-                    console.log(`successfully received: ${command[1]}`);
+            if (topic === "MeshToWeb") {
+                try {
+                    const payload = JSON.parse(message.toString());
+
+                    const board = sensors.find((board) => board.name === payload.boardName);
+                    if(board)
+                    {
+                        const updates: Record<string, string> = {};
+                        payload.sensors.forEach((sensor: any) => {
+                            updates[`${payload.boardName}:${sensor.sensorName}`] = String(sensor.value);
+                        });
+                        setMessages((prev) => ({ ...prev, ...updates }));
+                        console.log(`successfully received: ${payload.toString()}`);
+                    }
+                    else {
+                        console.log(`failed to receive: ${payload.toString()}`);
+                    }
+                } catch (error) {
+                   console.log(`Please enter a json format. Entered ${message.toString()}`); 
                 }
-                else {
-                    console.log(`failed to receive: ${command[1]}`);
-                }
-                //console.log("trying to set the payload!");
             }
         });
         

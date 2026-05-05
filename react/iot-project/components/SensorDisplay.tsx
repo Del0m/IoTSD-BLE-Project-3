@@ -7,9 +7,15 @@ import type { IClientOptions, MqttClient } from "mqtt";
 import { useMQTT } from "./MQTTClient";
 import Subscription from "./Subscription";
 
-type SensorDisplayProp = {
+export type SensorDisplay = {
     sensorName: string,
-    sensorUnit?: string
+    sensorUnit?: string,
+    frequency? : number,
+    show?: boolean
+}
+export type BoardDisplayProp = {
+    name: string,
+    sensors: SensorDisplay[];
 }
 export const styles = StyleSheet.create({
     header: {
@@ -42,7 +48,9 @@ export const styles = StyleSheet.create({
     },
     buttonRow: {
         alignItems: "center",
+        justifyContent: "center",
         flex: 1,
+        gap: 12,
         display:"flex",
         flexDirection: "row",
         verticalAlign:"middle",
@@ -64,22 +72,56 @@ export const styles = StyleSheet.create({
 });
 
 
-export default function SensorDisplay({sensorName, sensorUnit}: SensorDisplayProp): React.ReactNode {
+export default function SensorDisplay({name, sensors}: BoardDisplayProp): React.ReactNode {
     // for MQTT
-    const { connect, disconnect, subscribe, messages, status } = useMQTT();
-    const value = messages[sensorName];
+    const { connect, disconnect, publish, subscribe, messages, status } = useMQTT();
+    const [led0, setLed0] = useState(false);
+    const [led1, setLed1] = useState(false);
+
+    // send a message when we enable leds
+    useEffect(() => {
+    if (status === "connected") {
+        publish(
+        "WebToMesh",
+        JSON.stringify({
+            boardName: name,
+            led: "led0",
+            state: led0,
+        })
+        );
+    }
+    }, [led0]);
+
+    useEffect(() => {
+    if (status === "connected") {
+        publish(
+        "WebToMesh",
+        JSON.stringify({
+            boardName: name,
+            led: "led1",
+            state: led1,
+        })
+        );
+    }
+    }, [led1]);
 
     return (
         <View style={styles.container}>
             <Text style={styles.mainText}>
-                {sensorName} Information:
+                {name} Information:
             </Text>
             <View style={styles.secondaryContainer}>
-                <Text style={styles.secondaryText}>
-                    Sensor Data: {value || 'No data'} {sensorUnit + "\n"}
-                </Text>
-
+            {sensors.map((sensor) => {
+                const sensorValue = messages[`${name}:${sensor.sensorName}`];
+                return ( sensor.show !== false ?
+                <Text key={sensor.sensorName} style={styles.secondaryText}>
+                    {sensor.sensorName}: {sensorValue || "No data"} {sensor.sensorUnit || ""}
+                </Text> : <></>
+                );
+            })}
                 <div style={styles.buttonRow}>
+                    <Button title={`${led0 ? `disable` : `enable`} led0`} onPress={() => {setLed0(!led0)}}/>
+                    <Button title={`${led1 ? `disable` : `enable`} led1`} onPress={() => {setLed1(!led1)}}/>
                 </div>
             </View>
         </View>

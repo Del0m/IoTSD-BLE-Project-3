@@ -31,9 +31,9 @@ export default function Index() {
         <View style={{flex: 4, padding: 24, justifyContent:"space-evenly", flexDirection: "row", flexWrap:"wrap"}}>
           {sensors.map((sensor) => (
             <SensorDisplay 
-            key={sensor}
-            sensorName={sensor} 
-            sensorUnit="C"
+            key={sensor.name}
+            name={sensor.name} 
+            sensors={sensor.sensors}
             />
           ))}
         </View>
