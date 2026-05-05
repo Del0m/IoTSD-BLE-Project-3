@@ -11,7 +11,9 @@ export const sensors: BoardDisplayProp[] = [
     { sensorName: "humidity", sensorUnit: "RH"},
     { sensorName: "lux", sensorUnit: "lumen/m^2"},
     { sensorName: "led0", sensorUnit: "off / on", show: false},
-    { sensorName: "led1", sensorUnit: "off / on", show: false}
+    { sensorName: "led1", sensorUnit: "off / on", show: false},
+    { sensorName: "counter", sensorUnit: ""}
+
   ]
   },
   {
@@ -21,7 +23,9 @@ export const sensors: BoardDisplayProp[] = [
     { sensorName: "humidity", sensorUnit: "RH"},
     { sensorName: "lux", sensorUnit: "lumen/m^2"},
     { sensorName: "led0", sensorUnit: "off / on", show: false},
-    { sensorName: "led1", sensorUnit: "off / on", show: false}
+    { sensorName: "led1", sensorUnit: "off / on", show: false},
+    { sensorName: "counter", sensorUnit: ""}
+
   ]
   },
 ]

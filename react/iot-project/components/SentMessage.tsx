@@ -23,8 +23,8 @@ export default function SentMessage({ message, timeStamp }: MessageProp) {
             width:"100%"
 
         }}>
-            {message}
-            {/* Meant to hold the timeStamp */}
+            <Text>{message}</Text>
+            
             <View style={{
                 position:'absolute',
                 top:0, right: 0,

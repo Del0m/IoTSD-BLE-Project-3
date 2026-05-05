@@ -1,12 +1,13 @@
 "use client";
 import { Badge } from "@react-navigation/elements";
 import { useMQTT } from "./MQTTClient";
+import { View } from "react-native";
 
 export default function StatusLabel() {
     const { status } = useMQTT();
     return(
-        <div style={{
-            verticalAlign:"middle",
+        <View style={{
+            alignItems: "center",
             gap: 24,
             justifyContent:"center"
         }}>
@@ -16,9 +17,9 @@ export default function StatusLabel() {
                 fontSize: 20,
                 gap:24,
             }}>
-                Status: {status}
+                {`Status: ${status}`}
             </Badge>
-        </div>
+        </View>
 
     );
 }

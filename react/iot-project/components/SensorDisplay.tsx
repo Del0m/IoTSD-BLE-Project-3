@@ -24,8 +24,8 @@ export const styles = StyleSheet.create({
     },
     container: {
         alignItems: "center",
-        width: 250,
-        height: 150,
+        width: 300,
+        height: 200,
         gap: 6, 
         backgroundColor: "#4c5363", 
         flexDirection: "column",
@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     buttonRow: {
         alignItems: "center",
         justifyContent: "center",
-        flex: 1,
+        //flex: 1,
         gap: 12,
         display:"flex",
         flexDirection: "row",
@@ -113,16 +113,18 @@ export default function SensorDisplay({name, sensors}: BoardDisplayProp): React.
             <View style={styles.secondaryContainer}>
             {sensors.map((sensor) => {
                 const sensorValue = messages[`${name}:${sensor.sensorName}`];
+                const sensorFrequency = messages[`${name}:${sensor.sensorName}:frequency`];
+
                 return ( sensor.show !== false ?
                 <Text key={sensor.sensorName} style={styles.secondaryText}>
-                    {sensor.sensorName}: {sensorValue || "No data"} {sensor.sensorUnit || ""}
-                </Text> : <></>
+                    {sensor.sensorName}: {sensorValue || "No data"} {sensor.sensorUnit || ""} {sensor.sensorUnit?.length !== 0 ? `${sensorFrequency || 'n/a'} ms` : ``}
+                </Text> : null
                 );
             })}
-                <div style={styles.buttonRow}>
+                <View style={styles.buttonRow}>
                     <Button title={`${led0 ? `disable` : `enable`} led0`} onPress={() => {setLed0(!led0)}}/>
                     <Button title={`${led1 ? `disable` : `enable`} led1`} onPress={() => {setLed1(!led1)}}/>
-                </div>
+                </View>
             </View>
         </View>
     );

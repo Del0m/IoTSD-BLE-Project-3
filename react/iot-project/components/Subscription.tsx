@@ -11,9 +11,9 @@ import { Badge } from "@react-navigation/elements";
 export default function Subscription() {
     const { connect, disconnect, subscribe, messages, status } = useMQTT();
     return (
-        <div style={styles.buttonRow}>
+        <View style={styles.buttonRow}>
             <Button title="Subscribe" onPress={() => { connect(); subscribe("mesh"); }} disabled={status === "connected"}/>
             <Button title="Disconnect" onPress={() => { disconnect() }} disabled={status !== "connected"} color={styles.negativeButton.color}/>
-        </div>
+        </View>
     );
 }

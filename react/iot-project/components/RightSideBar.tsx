@@ -102,9 +102,14 @@ export default function RightSideBar() {
                 }
             </ScrollView>
             <View style={Style.textSection}>
-                <TextInput style={Style.textInput} multiline value={text} onChangeText={value => setText(value)}/>
-                <Button title="Send" onPress={handlePress}/>
+                <TextInput style={Style.textInput}
+                 multiline value={text}
+                 onChangeText={value => setText(value)}
+                 onSubmitEditing={handlePress}
+                 returnKeyType="send"
+                />
             </View>
+            <Button title="Send" onPress={handlePress}/>
         </View> :
         <View style={Style.hiddenSidebar}>
             <EnableSideBar hidden={hidden} setHidden={ setHidden }/>

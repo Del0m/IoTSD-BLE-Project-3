@@ -29,9 +29,9 @@ export default function Index() {
         }}
       >
         <View style={{flex: 4, padding: 24, justifyContent:"space-evenly", flexDirection: "row", flexWrap:"wrap"}}>
-          {sensors.map((sensor) => (
+          {sensors.map((sensor, idx) => (
             <SensorDisplay 
-            key={sensor.name}
+            key={`${idx}-${sensor.name}`}
             name={sensor.name} 
             sensors={sensor.sensors}
             />

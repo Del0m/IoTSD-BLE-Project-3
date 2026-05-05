@@ -50,6 +50,8 @@ export const MQTTProvider: React.FC<{children: React.ReactNode, sensors: BoardDi
                         const updates: Record<string, string> = {};
                         payload.sensors.forEach((sensor: any) => {
                             updates[`${payload.boardName}:${sensor.sensorName}`] = String(sensor.value);
+                            updates[`${payload.boardName}:${sensor.sensorName}:frequency`] = String(sensor.frequency || 'n/a');
+
                         });
                         setMessages((prev) => ({ ...prev, ...updates }));
                         console.log(`successfully received: ${payload.toString()}`);
